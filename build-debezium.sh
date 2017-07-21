@@ -21,7 +21,7 @@ build_docker_image () {
 }
 
 
-if [[ -z "$1" ]]; then
+if [ -z "$1" ]; then
     echo ""
     echo "A version must be specified."
     echo ""
