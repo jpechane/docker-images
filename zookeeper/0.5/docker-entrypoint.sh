@@ -35,6 +35,15 @@ case $ARG1 in
         sed -i -r -e "s|\\$\\{zookeeper.console.threshold\\}|$LOG_LEVEL|g" $ZK_HOME/conf/log4j.properties
 
         #
+        # Calculate settings for stateful set
+        #
+        NUMBERING_OFFSET=0
+        if [ "$SERVER_ID" = FROM_HOSTNAME ]; then
+            SERVER_ID="$((${HOSTNAME#*-}+1))"
+            NUMBERING_OFFSET=1
+        fi
+
+        #
         # Configure cluster settings
         #
         if [[ -z "$SERVER_ID" ]]; then
@@ -52,11 +61,11 @@ case $ARG1 in
             #
             echo "" >> $ZK_HOME/conf/zoo.cfg
             echo "#Server List" >> $ZK_HOME/conf/zoo.cfg
-            for i in $( eval echo {1..$SERVER_COUNT});do
+            for i in $( eval echo {1..$SERVER_COUNT}); do
                 if [ "$SERVER_ID" = "$i" ];then
                     echo "server.$i=0.0.0.0:2888:3888" >> $ZK_HOME/conf/zoo.cfg
                 else
-                    echo "server.$i=zookeeper-$i:2888:3888" >> $ZK_HOME/conf/zoo.cfg
+                    echo "server.$i=${SERVER_PRFIX:-zookeeper}-$((i-$NUMBERING_OFFSET))${SERVER_SUFFIX}:2888:3888" >> $ZK_HOME/conf/zoo.cfg
                 fi
             done
             #
