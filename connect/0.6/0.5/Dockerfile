@@ -4,7 +4,7 @@ MAINTAINER Debezium Community
 
 ENV DEBEZIUM_VERSION=0.5.2 \
     MAVEN_CENTRAL="https://repo1.maven.org/maven2" \
-    MD5SUMS="MONGODB_MD5= MYSQL_MD5= POSTGRES_MD5="
+    MD5SUMS="MONGODB_MD5=595dc9b9969026dc842dbc8c8505bf73 MYSQL_MD5=7b35065d244bdc666e05597c831767b8 POSTGRES_MD5=3bca17805a3ba384e41cd9c1bf8c1370"
 
 #
 # Create a single `$KAFKA_CONNECT_PLUGINS_DIR/debezium` directory into which we'll place all of our JARs and files.
