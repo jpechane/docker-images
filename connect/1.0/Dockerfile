@@ -10,10 +10,12 @@ ENV DEBEZIUM_VERSION="1.0.0.Beta1" \
     MYSQL_MD5=7dadec71631f274d61c1b9840563c7c4 \
     POSTGRES_MD5=2b89025469c1352456a18df05e83667b \
     SQLSERVER_MD5=36e3f437a49605be22b73911bb4487ec \
-    ORACLE_MD5=9252abdc9e998b1e9035a3426babbc55
+    ORACLE_MD5=9252abdc9e998b1e9035a3426babbc55 \
+    CASSANDRA_MD5=ba206df736d16c695910f5ef06068118
 
 RUN docker-maven-download debezium mongodb "$DEBEZIUM_VERSION" "$MONGODB_MD5" && \
     docker-maven-download debezium mysql "$DEBEZIUM_VERSION" "$MYSQL_MD5" && \
     docker-maven-download debezium postgres "$DEBEZIUM_VERSION" "$POSTGRES_MD5" && \
     docker-maven-download debezium sqlserver "$DEBEZIUM_VERSION" "$SQLSERVER_MD5" && \
-    docker-maven-download debezium-incubator oracle "$DEBEZIUM_VERSION" "$ORACLE_MD5"
+    docker-maven-download debezium-incubator oracle "$DEBEZIUM_VERSION" "$ORACLE_MD5" && \
+    docker-maven-download debezium-incubator cassandra "$DEBEZIUM_VERSION" "$CASSANDRA_MD5"
