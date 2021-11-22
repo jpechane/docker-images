@@ -19,5 +19,7 @@ docker build -t "debezium/postgres:$1" "postgres/$1"
 
 if [ "$PUSH_IMAGES" == "true" ]; then
     echo "Pushing the image into the registry"
+    docker tag "debezium/${IMAGE_NAME}:${IMAGE_TAG}" "quay.io/debezium/${IMAGE_NAME}:${IMAGE_TAG}"
+    docker push "quay.io/debezium/${IMAGE_NAME}:${IMAGE_TAG}"    
     docker push "debezium/postgres:$1"
 fi
