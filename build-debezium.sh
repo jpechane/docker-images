@@ -47,7 +47,8 @@ build_docker_image () {
             if [ "$DEBEZIUM_VERSION" == "$LATEST_STREAM" ]; then
                 echo "Pushing the latest image into the registry"
                 docker push "debezium/${IMAGE_NAME}:latest"
-                docker push "quay.io/debezium/${IMAGE_NAME}:latest"
+                docker tag "debezium/${IMAGE_NAME}:${IMAGE_TAG}" "quay.io/debezium/${IMAGE_NAME}:${IMAGE_TAG}"
+                docker push "quay.io/debezium/${IMAGE_NAME}:${IMAGE_TAG}"
             fi
         fi
     fi
