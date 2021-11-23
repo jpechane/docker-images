@@ -17,8 +17,8 @@ for TOOL in $DEBEZIUM_TOOLS; do
 
   if [ "$PUSH_IMAGES" == "true" ]; then
     echo "Pushing the image into the registry"
-    docker tag "debezium/${IMAGE_NAME}:$TAG" "quay.io/debezium/${IMAGE_NAME}:$TAG"
-    docker push "quay.io/debezium/${IMAGE_NAME}:$TAG"
     docker push "debezium/$TOOL:$TAG"
+    docker tag "debezium/$TOOL:$TAG" "quay.io/debezium/$TOOL:$TAG"
+    docker push "quay.io/debezium/$TOOL:$TAG"
   fi
 done

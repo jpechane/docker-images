@@ -19,7 +19,7 @@ docker build -t "debezium/mongo-initiator:$1" "mongo-initiator/$1"
 
 if [ "$PUSH_IMAGES" == "true" ]; then
     echo "Pushing the image into the registry"
-    docker tag "debezium/${IMAGE_NAME}:$1" "quay.io/debezium/${IMAGE_NAME}:$1"
-    docker push "quay.io/debezium/${IMAGE_NAME}:$1"
     docker push "debezium/mongo-initiator:$1"
+    docker tag "debezium/mongo-initiator:$1" "quay.io/debezium/mongo-initiator:$1"
+    docker push "quay.io/debezium/mongo-initiator:$1"
 fi
